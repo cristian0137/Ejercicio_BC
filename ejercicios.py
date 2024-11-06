@@ -23,12 +23,12 @@ info2 = pd.read_excel(archivo_excel, sheet_name='INFO2', header=0, index_col=0)
 
 
 
-#SECTOR ECONOMICO
+
 sector_economico = info1.groupby('SECTOR')['CARTERA'].sum()  
 pais_desglose = info1.groupby('PAIS')['CARTERA'].sum()
 tipo_persona_desglose = info1.groupby('TIPO PERSONA')['CARTERA'].sum()
 
-
+#SECTOR ECONOMICO
 plt.figure(figsize=(12, 6))
 sector_economico.plot(kind='bar', color='green', alpha=0.7)
 plt.title('Desglose de la Cartera de Créditos por Sector Económico')
@@ -194,7 +194,7 @@ print("El gráfico del plazo promedio de la cartera ha sido generado exitosament
 #c) Saldo de la cartera por días de atraso: 1 día a 30 días, 31 días a 60 días, 61 días a 90 días, 91 días a 180 días, 181 días a 1 año y superior a 1 año.
 info1['ATRASO_CATEGORIA'] = pd.cut(
     info1['DIAS_MORA'], 
-    bins=[0, 30, 60, 90, 180, 365, float('inf')], 
+    bins=[1, 30, 60, 90, 180, 365, float('inf')], 
     labels=['1-30 días', '31-60 días', '61-90 días', 
         '91-180 días', '181 días - 1 año', 'Más de 1 año'],
     right=True
